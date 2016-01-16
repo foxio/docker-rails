@@ -1,13 +1,13 @@
 rails_env = ENV['RAILS_ENV']
-app_dir = '/app'
+app_dir = ENV['RAILS_ROOT'] || '/app'
 
 working_directory app_dir
 worker_processes rails_env == 'production' ? 4 : 1
 timeout 15
 preload_app true
 
-# pid "#{app_dir}/tmp/unicorn.pid"
-listen '/tmp/unicorn.sock', backlog: 64
+listen '/var/run/unicorn.sock', backlog: 64
+pid '/var/run/unicorn.pid'
 stderr_path "#{app_dir}/log/unicorn.stderr.log"
 stdout_path "#{app_dir}/log/unicorn.stdout.log"
 

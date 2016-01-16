@@ -1,6 +1,4 @@
 #!/bin/bash
-gem install rails --version "~> 4.2.5"
-
 # Versioned Gems
 gem install annotate --version "~> 2.6.5" --no-rdoc
 gem install json --version "~> 1.8" --no-rdoc

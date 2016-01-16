@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
-# Copyright (C) 2015 Foxio
+# Copyright (C) 2015-2016 Foxio
 # Author Michael Fisher <mike@fox.io>
 
 ''' This program is free software: you can redistribute it and/or modify
@@ -20,11 +20,28 @@ from subprocess import call
 top = '.'
 out = 'build'
 
-def options(opts):
-    opts.load("compiler_c compiler_cxx")
+def options (opts):
+    opts.add_option('--rails-version', default='4.2.5', dest='rails_version', type='string', \
+        help="Specify the Rails Version [Default: 4.2.5]")
+    opts.add_option('--ruby-version', default='2.2.3', dest='ruby_version', type='string', \
+        help="Specify the Rails Version [Default: 2.2.3]")
 
-def configure(conf):
-    conf.load ("compiler_c compiler_cxx")
+def configure (conf):
+    conf.env.RAILS_VERSION = conf.options.rails_version
+    conf.env.RUBY_VERSION = conf.options.ruby_version
 
-def build(bld):
+def build_image (bld):
+    call(['docker', 'build', '-f', 'build/Dockerfile', \
+                             '-t', 'foxio/rails', '.'])
+
+def build (bld):
+    bld (
+        features = 'subst',
+        source = 'Dockerfile.in',
+        target = 'Dockerfile',
+        rails_version = bld.env.RAILS_VERSION,
+        ruby_version = bld.env.RUBY_VERSION
+    )
+
+    bld.add_post_fun (build_image)
     bld.install_files(bld.env.PREFIX + '/bin', bld.path.ant_glob('bin/*'), chmod=0755)
