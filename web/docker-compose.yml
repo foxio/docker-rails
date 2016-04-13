@@ -1,6 +1,4 @@
 web:
   build: .
-  environment:
-    DEBUG: "true"
   volumes:
     - .:/app

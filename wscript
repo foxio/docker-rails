@@ -21,8 +21,8 @@ top = '.'
 out = 'build'
 
 def options (opts):
-    opts.add_option('--rails-version', default='4.2.5', dest='rails_version', type='string', \
-        help="Specify the Rails Version [Default: 4.2.5]")
+    opts.add_option('--rails-version', default='4.2.6', dest='rails_version', type='string', \
+        help="Specify the Rails Version [Default: 4.2.6]")
     opts.add_option('--ruby-version', default='2.2.3', dest='ruby_version', type='string', \
         help="Specify the Rails Version [Default: 2.2.3]")
 
