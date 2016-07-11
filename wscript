@@ -21,7 +21,7 @@ top = '.'
 out = 'build'
 
 def options (opts):
-    opts.add_option('--rails-version', default='4.2.6', dest='rails_version', type='string', \
+    opts.add_option('--rails-version', default='5.0.0', dest='rails_version', type='string', \
         help="Specify the Rails Version [Default: 4.2.6]")
     opts.add_option('--ruby-version', default='2.2.3', dest='ruby_version', type='string', \
         help="Specify the Rails Version [Default: 2.2.3]")
@@ -32,7 +32,8 @@ def configure (conf):
 
 def build_image (bld):
     call(['docker', 'build', '-f', 'build/Dockerfile', \
-                             '-t', 'foxio/rails', '.'])
+                             '-t', 'foxio/rails:%s' % bld.env.RAILS_VERSION, \
+                             '.'])
 
 def build (bld):
     bld (

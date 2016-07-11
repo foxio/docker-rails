@@ -1,18 +1,18 @@
 #!/bin/bash
 # Versioned Gems
-gem install annotate --version "~> 2.6.5" --no-rdoc
+gem install annotate --version "~> 2.7.1" --no-rdoc
 gem install json --version "~> 1.8" --no-rdoc
 
 gem install uglifier --version ">= 1.3.0" --no-rdoc
-gem install coffee-rails --version "~> 4.1.0" --no-rdoc
-gem install jbuilder --version "~> 2.0" --no-rdoc
+gem install coffee-rails --version "~> 4.2.1" --no-rdoc
+gem install jbuilder --version "~> 2.5" --no-rdoc
 gem install sdoc --version "~> 0.4.0" --no-rdoc
 gem install high_voltage --version "~> 2.4.0" --no-rdoc
 gem install web-console --version "~> 2.0" --no-rdoc
 
 gem install sass-rails --version "~> 5.0" --no-rdoc
 gem install factory_girl_rails --version "~> 4.5.0" --no-rdoc
-gem install rspec-rails --version "~> 3.4.0" --no-rdoc
+gem install rspec-rails --version "~> 3.5.1" --no-rdoc
 
 gem install nokogiri --version "1.6.6.2" --no-rdoc
 gem install mysql2 --version "~> 0.3.20" --no-rdoc
