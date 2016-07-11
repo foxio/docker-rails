@@ -7,7 +7,7 @@ gem install uglifier --version ">= 1.3.0" --no-rdoc
 gem install coffee-rails --version "~> 4.2.1" --no-rdoc
 gem install jbuilder --version "~> 2.5" --no-rdoc
 gem install sdoc --version "~> 0.4.0" --no-rdoc
-gem install high_voltage --version "~> 2.4.0" --no-rdoc
+gem install high_voltage --version "~> 3.0" --no-rdoc
 gem install web-console --version "~> 2.0" --no-rdoc
 
 gem install sass-rails --version "~> 5.0" --no-rdoc
