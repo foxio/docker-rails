@@ -25,14 +25,17 @@ def options (opts):
         help="Specify the Rails Version [Default: 4.2.6]")
     opts.add_option('--ruby-version', default='2.2.3', dest='ruby_version', type='string', \
         help="Specify the Rails Version [Default: 2.2.3]")
+    opts.add_option('--docker-tag', default='latest', dest='docker_tag', type='string', \
+        help="Specify the Rails Version [Default: latest]")
 
 def configure (conf):
     conf.env.RAILS_VERSION = conf.options.rails_version
     conf.env.RUBY_VERSION = conf.options.ruby_version
+    conf.env.DOCKER_TAG = conf.options.docker_tag
 
 def build_image (bld):
     call(['docker', 'build', '-f', 'build/Dockerfile', \
-                             '-t', 'foxio/rails:%s' % bld.env.RAILS_VERSION, \
+                             '-t', 'foxio/rails:%s' % bld.env.DOCKER_TAG, \
                              '.'])
 
 def build (bld):

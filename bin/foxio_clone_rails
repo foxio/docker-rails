@@ -19,7 +19,7 @@ echo "Cloning Foxio Rails base app in: ${app_path}"
 set -x
 exec docker run --rm \
   -v "${app_path}":/target \
-  --workdir=/host foxio/rails:4.2 \
+  --workdir=/host foxio/rails:5.0.0 \
   cp -a /app/. /target
 
 exit $?
