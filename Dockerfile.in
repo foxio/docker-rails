@@ -1,33 +1,34 @@
 FROM ruby:@ruby_version@
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev \
-  nodejs-legacy libmysqlclient-dev npm
-RUN rm -rf /var/lib/apt/lists/*
-
-RUN npm install bower -g
-RUN mv /usr/local/bin/bower /usr/local/bin/bower_cli
-COPY bower.sh /usr/local/bin/bower
-RUN chmod +x /usr/local/bin/bower
-
 ENV CI=true
 ENV RAILS_VERSION @rails_version@
 
-RUN gem install rails --version @rails_version@
+
 COPY ./install_gems.sh /install_gems.sh
-RUN bash /install_gems.sh
-RUN rm -f /install_gems.sh
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev \
+  nodejs-legacy libmysqlclient-dev npm && \
+  rm -rf /var/lib/apt/lists/* && \
+  npm install bower -g && \
+  gem install rails --version @rails_version@ && \
+  bash /install_gems.sh && \
+  rm -f /install_gems.sh && \
+  mkdir -p /src/
+
+COPY bower.sh /usr/local/bin/bower.sh
+RUN mv /usr/local/bin/bower /usr/local/bin/bower_cli && \
+  mv /usr/local/bin/bower.sh /usr/local/bin/bower && \
+  chmod +x /usr/local/bin/bower
 
 WORKDIR /app
-COPY ./web /app
+COPY ./web/Gemfile* /app/
+COPY ./web /src/app
 RUN bundle install
 
 COPY ./unicorn.rb /etc/unicorn/unicorn.rb
-
 COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
 COPY ./start_rails_app.sh /usr/bin/start_rails_app
-RUN chmod +x /usr/bin/start_rails_app
+
+RUN chmod +x /entrypoint.sh && chmod +x /usr/bin/start_rails_app
 
 EXPOSE 5000
 ENTRYPOINT ["/entrypoint.sh"]

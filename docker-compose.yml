@@ -1,6 +1,2 @@
 rails:
-  image: foxio/rails:5.0.0
-  volumes:
-    - './web:/app'
-  ports:
-    - '80:5000'
+  image: foxio/rails
