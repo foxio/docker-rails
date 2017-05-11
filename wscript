@@ -23,10 +23,10 @@ top = '.'
 out = 'build'
 
 def options (opts):
-    opts.add_option('--rails-version', default='5.0.0.1', dest='rails_version', type='string', \
-        help="Specify the Rails Version [Default: 5.0.0.1]")
-    opts.add_option('--ruby-version', default='2.2.5', dest='ruby_version', type='string', \
-        help="Specify the Rails Version [Default: 2.2.5]")
+    opts.add_option('--rails-version', default='5.1.0', dest='rails_version', type='string', \
+        help="Specify the Rails Version [Default: 5.1.0]")
+    opts.add_option('--ruby-version', default='2.4.1', dest='ruby_version', type='string', \
+        help="Specify the Rails Version [Default: 2.4.1]")
     opts.add_option('--docker-tag', default='latest', dest='docker_tag', type='string', \
         help="Specify the Rails Version [Default: latest]")
 
